@@ -1,1 +1,1 @@
-# tin
+# tin - Trusted Info Network
