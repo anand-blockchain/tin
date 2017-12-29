@@ -1,0 +1,51 @@
+/**
+ * Write your model definitions here
+ */
+
+namespace tin
+
+asset NewsClip identified by clipId {
+  o String clipId
+  --> User producer
+  o String title
+  o String topic
+  o String tags
+  o String urls
+  o String length
+  o Boolean published
+}
+
+participant User identified by userId {
+  o String userId
+  o String firstName
+  o String lastName
+  o Double points
+  o Double reputation
+}
+
+transaction WatchedTransaction {
+  --> NewsClip newsClip
+  --> User consumer
+}
+
+transaction PublishedTransaction {
+  --> NewsClip newsClip
+  --> User producer
+}
+
+event WatchedEvent {
+  o String eventName
+  --> NewsClip newsClip
+  --> User producer
+  --> User consumer
+}
+
+event PublishedEvent {
+  o String eventName
+  --> NewsClip newsClip
+  --> User producer
+}
+
+event ErrorEvent {
+  o String eventName
+}
